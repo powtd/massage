@@ -1,0 +1,136 @@
+<html>
+
+<head>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #FEFBE9;
+        }
+
+        .container {
+
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+
+
+        }
+        .title{
+            margin-bottom: 2vw;
+        }
+        .sub{
+            margin: 1vw;
+        }
+    </style>
+</head>
+
+<body>
+    <!--<form action = "http://localhost:9999/results" method = "POST">
+         <p>Year <input type = "text" name = "year" /></p>
+      </form> 
+
+      <input type="submit">
+    
+    -->
+    <div class="container">
+        <h2 class="title">Customer Information</h2>
+        <form>
+            <label>Age:</label>
+            <input type="number" id="year" name="year" min="1" max="120" onchange="age_function()">
+
+            <p>Pain symptom</p>
+
+            <input type="checkbox" id="op1" name="op1" value="1" onchange="op1_function(1)">
+            <label> Joint stiffness</label><br>
+
+            <input type="checkbox" id="op2" name="op2" value="1" onchange="op1_function(2)">
+            <label> Osteoarthritis</label><br>
+
+            <input type="checkbox" id="op3" name="op3" value="1" onchange="op1_function(3)">
+            <label> Low back pain</label><br>
+
+            <input type="checkbox" id="op4" name="op4" value="1" onchange="op1_function(4)">
+            <label> Stress management</label><br>
+
+            <input type="checkbox" id="op5" name="op5" value="1" onchange="op1_function(5)">
+            <label> The spine</label><br>
+
+            <input type="checkbox" id="op6" name="op6" value="1" onchange="op1_function(6)">
+            <label> The chest</label><br>
+
+            <input type="checkbox" id="op7" name="op7" value="1" onchange="op1_function(7)">
+            <label> The face</label><br>
+
+            <input type="checkbox" id="op8" name="op8" value="1" onchange="op1_function(8)">
+            <label> The stomach</label><br>
+
+            <input type="checkbox" id="op9" name="op9" value="1" onchange="op1_function(9)">
+            <label> The hands / palms</label><br>
+
+            <input type="checkbox" id="op10" name="op10" value="1" onchange="op1_function(10)">
+            <label> The feet / toes</label><br>
+
+            <input type="checkbox" id="op11" name="op11" value="1" onchange="op1_function(11)">
+            <label> Chronic pain</label><br>
+
+            <input type="checkbox" id="op12" name="op12" value="1" onchange="op1_function(12)">
+            <label> Recovery from injuries</label><br>
+
+            <input type="checkbox" id="op13" name="op13" value="1" onchange="op1_function(13)">
+            <label> Postural problems</label><br>
+
+            <input type="checkbox" id="op1" name="op1" value="1" onchange="op1_function(14)">
+            <label> Muscle tension</label><br>
+
+            <input type="checkbox" id="op1" name="op1" value="1" onchange="op1_function(15)">
+            <label> Sciatica </label><br>
+
+            <input type="checkbox" id="op1" name="op1" value="1" onchange="op1_function(16)">
+            <label> After a workout or bodybuilding</label><br>
+
+            <input type="checkbox" id="op1" name="op1" value="1" onchange="op1_function(17)">
+            <label> Piriformis syndrome</label><br>
+
+            <input type="checkbox" id="op1" name="op1" value="1" onchange="op1_function(18)">
+            <label> Tennis elbow</label><br>
+
+
+
+            <input class="sub" type="button" id="sub" value="submit" onclick="submitted_function()">
+
+        </form>
+
+
+        <form action="http://localhost:9999/results" method="POST">
+            <p><input type="text" id="p1" name="year" /></p>
+        </form>
+    </div>
+
+
+    <script>
+        y = [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+        function age_function() {
+            age = document.getElementById("year").value;
+            y[0] = age
+            console.log(y)
+        }
+
+        function op1_function(index) {
+            y[index] = 1
+            console.log(y)
+        }
+
+        function submitted_function() {
+            console.log("subbb")
+            document.getElementById("p1").value = y;
+        }
+    </script>
+</body>
+
+</html>

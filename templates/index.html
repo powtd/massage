@@ -1,0 +1,104 @@
+<!doctype html>
+<html>
+
+<head>
+
+    <title>Massage</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #FEFBE9;
+        }
+
+        .butt {
+            width: fit-content;
+            padding: 1vw;
+            margin-top: 2vw;
+            background-color: rgb(0, 87, 0);
+            color: white;
+            display: block;
+        }
+
+        a {
+            color: white;
+            text-decoration: none;
+        }
+
+        nav {
+            text-align: center;
+            color: #FCB30E;
+            font-size: 1.5rem;
+            font-weight: 900;
+            padding: 1.5vh;
+            border-bottom: 1px solid #183a1d1e;
+        }
+
+        .container {
+
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+
+
+        }
+
+        .left {
+            margin: 1vw;
+            display: inline-block;
+            margin-top: 5vw;
+            margin-right: 2vw;
+        }
+
+        .txt {
+            color: #183A1D;
+            font-size: 3rem;
+            font-weight: bold;
+        }
+
+        .txt1 {
+            color: #183A1D;
+        }
+
+        img {
+            width: 23vw;
+            height: auto;
+            bottom: 0;
+            border-radius: 50%;
+            margin-bottom: 6vw;
+        }
+
+        .right {
+            display: inline-block;
+            margin-left: 2vw;
+        }
+    </style>
+</head>
+
+<body>
+    <nav>
+        <h2>Massage Expert</h2>
+    </nav>
+    <div class="container">
+        <div class="left">
+            <span class="txt">Just relax <br>I got your back!</span>
+            <p class="txt1">(and legs, arms, shoulders, hands and feet)</p>
+            <a class="butt" href="http://localhost:9999/home">Get Recommedation Program</a>
+        </div>
+        <div class="right">
+            <img src="{{url_for('static', filename='image0.png')}}" align="middle" />
+
+        </div>
+    </div>
+
+
+
+
+</body>
+
+</html>

@@ -1,0 +1,94 @@
+<!doctype html>
+<html>
+
+<head>
+    <title>Massage</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #FEFBE9;
+        }
+
+        .container {
+
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+        .title{
+            margin: 2vw;
+            font-size: 1.6rem;
+            color: #183A1D;
+            font-weight: bold;
+        }
+        .result{
+            margin: 2vw;
+            font-size: 1.5rem;
+            color: #183A1D;
+        }
+        .butt{
+            padding: 1vw;
+            margin: 2vw;
+            background-color: #183A14;
+            color: #ffffff;
+            text-decoration: none;
+        }
+    
+    </style>
+</head>
+
+<body>
+
+    <!--<div>{{ year }}</div> -->
+
+
+    <div class="container">
+        <p class="title">Your Massage Program is <strong>{{ predicted_price }}</strong></p>
+
+        <p class="result" id="demo"></p>
+        <a class="butt" href="http://localhost:9999">Back</a>
+    </div>
+
+    <script>
+        let x = '{{ predicted_price }}';
+        console.log(x)
+        let y;
+
+        switch (x) {
+            case "[&#39;Swedish Massage Theraphy&#39;]":
+                y = "The most common type of massage is Swedish massage therapy. It involves soft, long, kneading strokes, as well as light, rhythmic, tapping strokes, on topmost layers of muscles. This is also combined with movement of the joints. By relieving muscle tension, Swedish therapy can be both relaxing and energizing."
+                break;
+            case "[&#39;Reflexology&#39;]":
+                y = "Reflexology, also known as zone therapy, is an alternative medical practice involving the application of pressure to specific points on the feet and/or hands. This is done using thumb, finger, and hand massage techniques without the use of oil or lotion. It is based on a pseudoscientific system of zones and reflex areas that purportedly reflect an image of the body on the feet and hands, with the premise that such work on the feet and hands causes a physical change to the supposedly related areas of the body."
+                break;
+            case "[&#39;Medical Massage&#39;]":
+                y = "Medical massage is outcome-based massage, primarily the application of a specific treatment targeted to the specific problem the patient presents with a diagnosis and are administered after a thorough assessment/evaluation by the medical massage therapist with specific outcomes being the basis for treatment. It is also known as clinical massage or treatment massage.";
+                break;
+            case "[&#39;Thai Massage&#39;]":
+                y = "Thai massage is a form of therapeutic touch that differs in many ways from traditional massage. Instead of a massage table, you lie on a mat on the floor while the provider manipulates your body in certain ways to stimulate organs and improve flexibility. ";
+                break;
+            case "[&#39;Hot stone massage&#39;]":
+                y = "Hot stone massage is a speciality massage where smooth, heated stones are used by the therapist by placing them or rubbing them on the body. The heat from the stones leads to deep relaxation and to warming up of the tight muscles enabling the therapist to work more deeply and more quickly.";
+                break;
+            case "[&#39;Deep Tissue Massage Therapy&#39;]":
+                y = "Deep tissue massage is a massage technique that’s mainly used to treat musculoskeletal issues, such as strains and sports injuries. It involves applying sustained pressure using slow, deep strokes to target the inner layers of your muscles and connective tissues. This helps to break up scar tissue that forms following an injury and reduce tension in muscle and tissue.";
+                break;
+
+            case "[&#39;Aromatherapy&#39;]":
+                y = "Aromatherapy is a specific type of therapy that incorporates the use of scented essential oils into a massage. The massage involves alternating between gentle and harder pressure while using a specific blend of essential oils. The essential oils are diluted before use and are applied along with lotion during the massage. Not only is the client's body benefiting with the direct contact with the essential oils, but the oils are alleged to have specific healing properties upon inhaling after exposure. Sometimes, therapists even go as far as having clients inhale the oils through a diffuser and not only through mild exposure.";
+                break;
+            default:
+                console.log("error");
+                break;
+        }
+        document.getElementById("demo").innerHTML = y;
+    </script>
+</body>
+
+</html>
