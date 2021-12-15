@@ -21,11 +21,42 @@
 
 
         }
-        .title{
+
+        .title {
             margin-bottom: 2vw;
         }
-        .sub{
+
+        .sub {
             margin: 1vw;
+        }
+        .p{
+            margin-bottom: .5vw;
+            margin-top: 0.5;
+            margin-left: 0;
+        }
+        .age{
+            margin-left: 0;
+        }
+
+        input[type=number] {
+            border: 2px solid #183A1D;
+            border-radius: 4px;
+        }
+
+        input[type=text] {
+            border: 2px solid #183A1D;
+            border-radius: 4px;
+        }
+
+        input[type=checkbox] {
+            position: relative;
+            cursor: pointer;
+        }
+
+
+        label{
+            margin-left:1vw ;
+            margin-top: 1vw;
         }
     </style>
 </head>
@@ -41,10 +72,10 @@
     <div class="container">
         <h2 class="title">Customer Information</h2>
         <form>
-            <label>Age:</label>
+            <label class="age">Age:</label>
             <input type="number" id="year" name="year" min="1" max="120" onchange="age_function()">
 
-            <p>Pain symptom</p>
+            <p class="p">Pain symptom</p>
 
             <input type="checkbox" id="op1" name="op1" value="1" onchange="op1_function(1)">
             <label> Joint stiffness</label><br>
