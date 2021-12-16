@@ -1,41 +1,22 @@
+import numpy as np
 from flask import Flask, render_template, request
-from numpy.core.records import array
-from sklearn import tree
 app = Flask('massage')
 
+def jaccard_binary(x,y):
+    
+    intersection = np.logical_and(x, y)
+    union = np.logical_or(x, y)
+    similarity = intersection.sum() / float(union.sum())
+    return similarity
 
+Reflexology = [1,1,0,1,0,0,0,0,1,1,0,1,0,1,0,1,0,1]
+MedicalMassage = [1,1,1,1,1,1,0,1,0,1,1,1,1,1,1,1,1,0]
+ThaiMassage = [1,1,1,1,1,1,0,1,0,1,1,1,1,1,1,1,1,0]
+SwedishMassageTheraphy = [0,0,1,1,1,0,0,0,0,0,1,0,0,1,1,1,0,0]
+Hotstonemassage = [0,0,1,1,1,1,1,1,1,1,0,0,0,1,1,1,0,0]
+DeepTissueMassageTherapy = [0,0,1,1,1,0,0,0,0,0,1,0,1,1,1,1,1,0]
+Aromatherapy = [0,0,0,1,0,0,1,0,0,0,0,0,0,0,0,0,0,0]
 
-features = [[21,1,1,0,1,0,0,0,0,1,1,0,1,0,1,0,1,0,1],
-            [60,1,1,1,1,1,1,0,1,0,1,1,1,1,1,1,1,1,0],
-            [59,1,1,1,1,1,1,0,1,0,1,1,1,1,1,1,1,1,0],
-            [45,0,0,1,1,1,0,0,0,0,0,1,0,0,1,1,1,0,0],
-            [24,0,0,1,1,1,1,1,1,1,1,0,0,0,1,1,1,0,0],
-            [38,0,0,1,1,1,0,0,0,0,0,1,0,1,1,1,1,1,0],
-            [32,1,0,1,0,1,1,0,1,0,1,1,1,1,1,1,1,1,0],
-            [53,0,0,1,1,1,0,0,0,0,0,1,0,1,1,1,1,1,0],
-            [48,0,0,1,1,1,0,0,0,0,0,1,1,1,1,1,1,1,0],
-            [47,1,1,1,1,1,1,0,1,0,1,1,1,1,1,1,1,1,0],
-            [55,0,0,1,1,1,1,1,1,1,1,0,0,0,1,1,1,0,0],
-            [23,0,0,1,1,1,0,0,0,0,0,1,0,0,1,1,1,0,0],
-            [39,0,0,1,1,1,0,0,0,0,0,1,1,1,1,1,1,1,0],
-            [51,0,0,1,1,1,0,0,0,0,0,1,0,1,1,1,1,1,0],
-            [19,1,1,1,1,1,1,0,1,0,1,1,1,1,1,1,1,1,0],
-            [22,0,0,0,1,0,0,1,0,0,0,0,0,0,0,0,0,0,0],
-            [62,1,1,0,1,0,0,0,0,1,1,0,1,0,1,0,1,0,1],
-            [40,0,0,0,1,0,0,1,0,0,0,0,0,0,0,0,0,0,0],
-            [25,1,1,1,1,0,1,0,1,0,1,1,1,1,0,1,1,1,0],
-            [24,0,0,1,0,1,1,1,1,1,1,0,0,0,1,1,1,0,0],
-            [31,0,0,1,1,1,0,1,1,0,1,0,0,0,1,1,1,0,0]]
-
-labels=["Reflexology","Medical Massage","Thai Massage","Swedish Massage Theraphy","Hot stone massage",
-        "Deep Tissue Massage Therapy","Thai Massage","Deep Tissue Massage Therapy","Medical Massage",
-        "Thai Massage","Hot stone massage","Swedish Massage Theraphy","Medical Massage","Deep Tissue Massage Therapy",
-        "Thai Massage","Aromatherapy","Reflexology","Aromatherapy","Thai Massage","Hot stone massage","Hot stone massage"]
-
-classifier = tree.DecisionTreeClassifier()
-classifier = classifier.fit(features, labels)
-result = classifier.predict([[36,0,0,1,1,1,0,1,1,0,1,0,0,0,1,1,1,0,0]])
-print(result)
 
 
 @app.route('/')
@@ -48,13 +29,46 @@ def predictor():
 def results():
     form = request.form
     if request.method == 'POST':
-      #write your function that loads the model
-       #you can use pickle to load the trained model
+      
        year = request.form['year']
        ye =[[int(s) for s in year.split(',')]]
        print(ye)
        
-       predicted_stock_price = classifier.predict(ye)
-       return render_template('result.html', year=year,   predicted_price=predicted_stock_price )
+       sim_Reflexology = jaccard_binary(Reflexology,ye)
+       sim_MedicalMassage = jaccard_binary(MedicalMassage,ye)
+       sim_ThaiMassage = jaccard_binary(ThaiMassage,ye)
+       sim_SwedishMassageTheraphy = jaccard_binary(SwedishMassageTheraphy,ye)
+       sim_Hotstonemassage = jaccard_binary(Hotstonemassage,ye)
+       sim_DeepTissueMassageTherapy = jaccard_binary(DeepTissueMassageTherapy,ye)
+       sim_Aromatherapy = jaccard_binary(Aromatherapy,ye)
+
+       xx = [sim_Reflexology,sim_MedicalMassage,sim_ThaiMassage,sim_SwedishMassageTheraphy,sim_Hotstonemassage,sim_DeepTissueMassageTherapy,sim_Aromatherapy]
+       xx.sort()
+       p = xx[-1]
+
+       if(p == sim_Reflexology):
+        pp = "Reflexology"
+
+       if(p == sim_MedicalMassage):
+        pp = "Medical Massage"
+
+       if(p == sim_ThaiMassage):
+        pp = "Thai Massage"
+
+       if(p == sim_SwedishMassageTheraphy):
+        pp = "Swedish Massage Theraphy"
+
+       if(p == sim_Hotstonemassage):
+        pp = "Hotstone massage"
+
+       if(p == sim_DeepTissueMassageTherapy):
+        pp = "Deep TissueMassage Therapy"
+
+       if(p == sim_Aromatherapy):
+        pp = "Aromatherapy"
+       
+
+
+       return render_template('result.html', year=year,   predicted_price=pp)
 
 app.run("localhost", "9999", debug=True)
